@@ -1,0 +1,18 @@
+services:
+
+  tomcat:
+    build:
+      context: .
+      dockerfile: docker/Tomcat.Dockerfile
+    container_name: Tomcat-service
+    networks:
+      - messenger-demo
+    ports:
+      - 8080:${TOMCAT_PORT}
+    restart: unless-stopped
+    deploy:
+      mode: replicated
+      replicas: ${TOMCAT_REPLICAS}
+
+networks:
+  messenger-demo : {}
