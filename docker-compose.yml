@@ -1,6 +1,7 @@
 services:
 
   tomcat:
+#    image:  tomcat:8.5.47-jdk8-openjdk
     build:
       context: .
       dockerfile: docker/Tomcat.Dockerfile
@@ -8,7 +9,7 @@ services:
     networks:
       - messenger-demo
     ports:
-      - 8080:${TOMCAT_PORT}
+      - ${TOMCAT_PORT}:8080
     restart: unless-stopped
     deploy:
       mode: replicated

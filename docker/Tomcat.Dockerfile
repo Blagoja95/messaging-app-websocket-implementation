@@ -5,14 +5,16 @@ WORKDIR /app
 
 COPY service/pom.xml .
 
-RUN mvn dependency:go-offline
+RUN mvn clean install
 
 COPY service/src ./src
 
-RUN mvn clean package
+RUN mvn package
 
-FROM tomcat:9.0-jdk11-openjdk-slim
+FROM tomcat:8.5.47-jdk8-openjdk
 
 COPY --from=builder /app/target/messaging-app-websocket-implementation-1.0-SNAPSHOT.war  /usr/local/tomcat/webapps/ROOT.war
+
+EXPOSE 8080
 
 CMD ["catalina.sh", "run"]
