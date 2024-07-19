@@ -11,7 +11,7 @@ COPY service/src ./src
 
 RUN mvn package
 
-FROM tomcat:8.5.47-jdk8-openjdk
+FROM tomcat:10
 
 COPY --from=builder /app/target/messaging-app-websocket-implementation-1.0-SNAPSHOT.war  /usr/local/tomcat/webapps/ROOT.war
 
