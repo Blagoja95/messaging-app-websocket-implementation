@@ -4,9 +4,9 @@ import src.main.java.com.messaging.decoders.MessageDecoder;
 import src.main.java.com.messaging.encoders.MessageEncoder;
 import src.main.java.com.messaging.models.message.Message;
 
-import javax.websocket.*;
-import javax.websocket.server.PathParam;
-import javax.websocket.server.ServerEndpoint;
+import jakarta.websocket.*;
+import jakarta.websocket.server.PathParam;
+import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
@@ -31,8 +31,8 @@ public class ChatEndpoint
 		users.put(session.getId(), username);
 
 		Message message = new Message();
-		message.setFrom(username);
-		message.setContent(username + "connected!");
+		message.setFrom("@special");
+		message.setContent(username + " connected!");
 
 		broadcast(message);
 	}
@@ -43,7 +43,7 @@ public class ChatEndpoint
 	chatEndpoints.remove(this);
 		Message message = new Message();
 		message.setFrom(session.getId());
-		message.setContent(users.get(session.getId()) + "disconnected!");
+		message.setContent(users.get(session.getId()) + " disconnected!");
 
 		users.remove(session.getId());
 

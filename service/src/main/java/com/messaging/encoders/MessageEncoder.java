@@ -3,9 +3,9 @@ package src.main.java.com.messaging.encoders;
 import com.google.gson.Gson;
 import src.main.java.com.messaging.models.message.Message;
 
-import javax.websocket.EncodeException;
-import javax.websocket.Encoder;
-import javax.websocket.EndpointConfig;
+import jakarta.websocket.EncodeException;
+import jakarta.websocket.Encoder;
+import jakarta.websocket.EndpointConfig;
 
 public class MessageEncoder implements Encoder.Text<Message>
 {

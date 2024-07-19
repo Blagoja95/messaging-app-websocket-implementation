@@ -3,9 +3,9 @@ package src.main.java.com.messaging.decoders;
 import com.google.gson.Gson;
 import src.main.java.com.messaging.models.message.Message;
 
-import javax.websocket.DecodeException;
-import javax.websocket.Decoder;
-import javax.websocket.EndpointConfig;
+import jakarta.websocket.DecodeException;
+import jakarta.websocket.Decoder;
+import jakarta.websocket.EndpointConfig;
 
 public class MessageDecoder implements Decoder.Text<Message>
 {
