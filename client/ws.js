@@ -56,17 +56,12 @@ function openSocket (username) {
     }
 
     ws.onmessage = (e) => {
-        const msgObj = JSON.parse(e.data);
-
-        if (msgObj.from === '@special')
-            console.log('todo')
-
-        ob.innerHTML = msgObj.content
+       writeMessage(JSON.parse(e.data));
     }
 }
 
-ob.addEventListener('blur', handleNewMsg);
-ob.addEventListener('keydown', (e) =>
+ib.addEventListener('blur', handleNewMsg);
+ib.addEventListener('keydown', (e) =>
 {
     if(e.key === 'Enter')
         handleNewMsg();
@@ -74,5 +69,31 @@ ob.addEventListener('keydown', (e) =>
 
 function handleNewMsg ()
 {
-    console.log(ob.value)
+    ws.send(JSON.stringify(
+        {
+            from: nb.value,
+            content: ib.value
+        }
+    ));
+}
+
+function writeMessage (msgObj)
+{
+    let tmpl = '<p></p>';
+
+    if (msgObj.from === '@special')
+    {
+        tmpl = `<span class="user-connected">${msgObj.content}<span/>`
+
+    }
+    else
+    {
+        console.log(new Date(msgObj.timestring).getHours());
+        tmpl = `<div class="msg-block">
+                    <span class="username-span">${msgObj.from}</span>
+                    <p class="users-msg">${msgObj.content}</p>
+                </div>`;
+    }
+
+    ob.insertAdjacentHTML('afterend', tmpl);
 }

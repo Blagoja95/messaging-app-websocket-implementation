@@ -2,9 +2,31 @@ package src.main.java.com.messaging.models.message;
 
 public class Message
 {
+	private String msgID;
 	private String from;
 	private String to;
 	private String content;
+	private String timestring;
+
+	public String getTimestring()
+    {
+		return timestring;
+	}
+
+	public void setTimestring(String timestring)
+    {
+		this.timestring = timestring;
+	}
+
+	public String getMsgID()
+    {
+		return msgID;
+	}
+
+	public void setMsgID(String msgID)
+    {
+		this.msgID = msgID;
+	}
 
 	public String getFrom()
 	{

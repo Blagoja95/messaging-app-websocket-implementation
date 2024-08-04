@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
+import java.time.Instant;
 
 @ServerEndpoint(
 		value = "/chat/{username}",
@@ -67,6 +68,7 @@ public class ChatEndpoint
 	public void onMessage(Session session, Message message) throws IOException, EncodeException
 	{
 		message.setFrom(users.get(session.getId()));
+		message.setTimestring(Instant.now().toString());
 
 		broadcast(message);
 	}
